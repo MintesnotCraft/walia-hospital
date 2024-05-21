@@ -1,0 +1,104 @@
+#%RAML 1.0
+title: walia-hospital
+version: 1.0.0
+protocols: [HTTP, HTTPS]
+mediaType: [application/json]
+description: This is an API for our patient portal
+
+
+uses:
+  lib: Library/library.raml
+
+documentation:
+  - !include documentation.raml
+
+annotationTypes:
+  author:
+    type: string
+  deprecated:
+    type: boolean
+
+
+
+/patients:
+  (author): "Mintesnot Iwunete"
+  (deprecated): false
+  securedBy:
+    - lib.customsecurity
+  type:
+    lib.collections:
+      exampleReference: !include Examples/patientsexample.raml
+  is:
+      - lib.errortraits
+      - lib.pageabletrait    
+      - lib.sortabletrait      
+      
+  post:
+    body:
+      application/json:
+        example:
+         
+    responses:
+      200:
+        body:
+          application/json:
+           example:
+            {"message": "The patient added successfully!"}
+    is:
+      - lib.errortraits
+      
+  /{patientID}:
+    description: This retrives just one patient by that patient id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.patienttype
+              example:
+                !include Examples/patientexample.raml
+    
+  patch:
+      queryParameters:
+        patientID: string
+      body:
+        type: lib.patienttype
+        example:
+         !include Examples/patientexample.raml
+      responses:
+       200:
+        body:
+          example:
+            {"message": "The patient updated successfully!"}
+      is:
+        - lib.errortraits
+       
+  delete:
+    queryParameters:
+      patientID: string
+    responses:
+      200:
+        body:
+          example:
+            {"message": "The patient deleted successfully!"}
+    is:
+        - lib.errortraits
+      
+      
+/medications/{patientID}:
+  description: This is to retrive the medication of a specific patient
+  securedBy: lib.oauthsecurity
+  uriParameters:
+    patientID:
+      type: string
+      description: this is the patient
+  type:
+    lib.collections:
+      exampleReference: !include Examples/medicationexample.raml
+              
+  is:
+    - lib.errortraits
+
+
+
+

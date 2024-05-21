@@ -1,0 +1,16 @@
+#%RAML 1.0 Trait
+responses:
+  404:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Not Found"
+              }     
+  500:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Service Unavailable. Try again later!" 
+                }

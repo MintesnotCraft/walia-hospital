@@ -1,0 +1,12 @@
+#%RAML 1.0 SecurityScheme
+type: x-token-authorization
+description: This is used token 
+describedBy:
+  headers:
+    Authorization: 
+      type: string
+  responses:
+    401:
+     description: Unauthorized user
+
+    

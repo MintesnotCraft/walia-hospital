@@ -1,0 +1,30 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  patientID:
+    type: string
+    required: true
+   
+  name: 
+    type: string
+    required: false
+  age:
+    type: integer
+    minimum: 1
+    maximum: 80
+  email:
+    type: string
+    pattern: ^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$
+  address:
+    type: object
+    properties:
+      country: string
+      city: string
+      street: string
+  sex:
+    type: string
+    enum: ["male", "female"]
+  room_service:
+    type: boolean
+
+

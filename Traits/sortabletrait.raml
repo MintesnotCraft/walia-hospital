@@ -1,0 +1,12 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  orderby:
+    description: This is for ordering
+    type: string
+    required: false
+  order:
+    description: The direction of the order
+    enum: [asc, desc]
+    default: asc
+    required: false

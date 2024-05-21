@@ -1,0 +1,18 @@
+#%RAML 1.0 Extension
+extends: walia-hospital.raml
+description: This is admin documentation 
+
+
+/appointments:
+  description: This is to retrive the appointments of a specific patient
+  securedBy: lib.oauthsecurity
+  uriParameters:
+    patientID:
+      type: string
+      description: this is the patient
+  type:
+    lib.collections:
+      exampleReference: !include Examples/medicationexample.raml
+              
+  is:
+    - lib.errortraits

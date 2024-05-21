@@ -1,0 +1,21 @@
+#%RAML 1.0 Library
+
+annotationTypes:
+  author:
+    type: string
+  deprecated:
+    type: boolean
+
+types:
+  patienttype: !include ../DataTypes/patientdatatype.raml
+traits:
+  errortraits: !include ../Traits/errortrait.raml
+  pageabletrait: !include ../Traits/pageabletrait.raml
+  sortabletrait: !include ../Traits/sortabletrait.raml
+securitySchemes:
+  basicSecurity: !include ../Securities/basicsecurity.raml
+  oauthsecurity: !include ../Securities/oauthsecurityScheme.raml
+  customsecurity: !include ../Securities/customsecurityScheme.raml
+
+resourceTypes:
+  collections: !include ../ResourceTypes/resourceType.raml
